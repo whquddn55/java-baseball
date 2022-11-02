@@ -29,4 +29,10 @@ public class BaseballGame {
             throw new IllegalArgumentException(String.format("입력한 숫자의 길이가 %d이 아닙니다.", INPUT_SIZE));
         }
     }
+
+    private void validateInputDistinct(List<Integer> input) throws IllegalArgumentException {
+        if (input.stream().distinct().count() != INPUT_SIZE) {
+            throw new IllegalArgumentException("입력한 숫자에 중복이 발생했습니다.");
+        }
+    }
 }
