@@ -35,4 +35,10 @@ public class BaseballGame {
             throw new IllegalArgumentException("입력한 숫자에 중복이 발생했습니다.");
         }
     }
+
+    private void validateInput(List<Integer> input) throws IllegalArgumentException {
+        validateIntegerRange(input);
+        validateInputLength(input);
+        validateInputDistinct(input);
+    }
 }
