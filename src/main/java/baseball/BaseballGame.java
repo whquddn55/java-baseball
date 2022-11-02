@@ -1,5 +1,5 @@
 package baseball;
-
+import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballGame {
 
@@ -7,4 +7,7 @@ public class BaseballGame {
 
     }
 
+    private String readIntegerFromUser()  {
+        return Console.readLine();
+    }
 }
