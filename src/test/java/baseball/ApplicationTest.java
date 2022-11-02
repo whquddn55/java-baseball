@@ -40,7 +40,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("String to List<integer> 성공 테스트 - digit")
     @Test
-    public void castStringToIntegerListTestSuccessDigit() throws Exception {
+    public void castStringToIntegerListDigitSuccessTest() throws Exception {
         // given
         String input = "123";
         Method method = baseballGame.getClass().getDeclaredMethod("castStringToIntegerList", String.class);
@@ -55,7 +55,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("String to List<integer> 성공 테스트 - alphabet")
     @Test
-    public void castStringToIntegerListTestSuccessAlphabet() throws Exception {
+    public void castStringToIntegerListAlphabetSuccessTest() throws Exception {
         // given
         String input = "abc";
         Method method = baseballGame.getClass().getDeclaredMethod("castStringToIntegerList", String.class);
@@ -70,7 +70,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("String to List<integer> 실패 테스트 - alphabet")
     @Test
-    public void castStringToIntegerListTestFailAlphabet() throws Exception {
+    public void castStringToIntegerListAlphabetFailTest() throws Exception {
         // given
         String input = "abc";
         Method method = baseballGame.getClass().getDeclaredMethod("castStringToIntegerList", String.class);
