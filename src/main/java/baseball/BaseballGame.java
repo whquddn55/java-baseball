@@ -1,7 +1,9 @@
 package baseball;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BaseballGame {
     private static final int INPUT_SIZE = 3;
@@ -40,5 +42,12 @@ public class BaseballGame {
         validateIntegerRange(input);
         validateInputLength(input);
         validateInputDistinct(input);
+    }
+
+    private List<Integer> generateComputerNumber() {
+        return Stream.generate(() -> Randoms.pickNumberInRange(0, 9))
+                .distinct()
+                .limit(INPUT_SIZE)
+                .collect(Collectors.toList());
     }
 }
