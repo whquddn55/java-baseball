@@ -1,6 +1,9 @@
 package baseball;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.lang.reflect.Method;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -9,6 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
+    private static final BaseballGame baseballGame = new BaseballGame();
+
     @Test
     void 게임종료_후_재시작() {
         assertRandomNumberInRangeTest(
@@ -31,5 +36,21 @@ class ApplicationTest extends NsTest {
     @Override
     public void runMain() {
         Application.main(new String[]{});
+    }
+
+    @DisplayName("String to List<integer> 성공 테스트 - digit")
+    @Test
+    public void castStringToIntegerListTestSuccessDigit() throws Exception {
+        // given
+        String input = "123";
+        Method method = baseballGame.getClass().getDeclaredMethod("castStringToIntegerList", String.class);
+        method.setAccessible(true);
+
+        // when
+        List<Integer> result = (List<Integer>) method.invoke(baseballGame, input);
+
+        // then
+        assertThat(result).isEqualTo(List.of(1, 2, 3));
+    }
     }
 }
