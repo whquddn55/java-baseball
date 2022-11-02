@@ -67,5 +67,19 @@ class ApplicationTest extends NsTest {
         // then
         assertThat(result).isEqualTo(List.of('a' - '0', 'b' - '0', 'c' - '0'));
     }
+
+    @DisplayName("String to List<integer> 실패 테스트 - alphabet")
+    @Test
+    public void castStringToIntegerListTestFailAlphabet() throws Exception {
+        // given
+        String input = "abc";
+        Method method = baseballGame.getClass().getDeclaredMethod("castStringToIntegerList", String.class);
+        method.setAccessible(true);
+
+        // when
+        List<Integer> result = (List<Integer>) method.invoke(baseballGame, input);
+
+        // then
+        assertThat(result).isNotEqualTo(List.of((int)'a', (int)'b', (int)'c'));
     }
 }
