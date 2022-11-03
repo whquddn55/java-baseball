@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
@@ -81,5 +81,20 @@ class ApplicationTest extends NsTest {
 
         // then
         assertThat(result).isNotEqualTo(List.of((int)'a', (int)'b', (int)'c'));
+    }
+
+    @DisplayName("validateIntegerRange 성공 테스트")
+    @Test
+    public void validateIntegerRangeSuccessTest() throws Exception {
+        // given
+        List<Integer> input = List.of(1, 2, 3);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateIntegerRange", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatCode(() -> method.invoke(baseballGame, input))
+                .doesNotThrowAnyException();
     }
 }
