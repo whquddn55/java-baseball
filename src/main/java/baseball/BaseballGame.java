@@ -51,17 +51,17 @@ public class BaseballGame {
                 .collect(Collectors.toList());
     }
 
-    private int calculateStrikeScore(List<Integer> input, List<Integer> computer) {
+    private int calculateStrikeScore(List<Integer> input, List<Integer> computerNumber) {
         int strikeScore = 0;
         for(int i = 0; i < INPUT_SIZE; ++i) {
-            if (input.get(i).equals(computer.get(i))) {
+            if (input.get(i).equals(computerNumber.get(i))) {
                 ++strikeScore;
             }
         }
         return strikeScore;
     }
 
-    private int calculateBallScore(List<Integer> input, List<Integer> computer) {
+    private int calculateBallScore(List<Integer> input, List<Integer> computerNumber) {
         int ballScore = 0;
         for(int i = 0; i < INPUT_SIZE; ++i) {
             for (int j = 0; j < INPUT_SIZE; ++j) {
@@ -69,16 +69,16 @@ public class BaseballGame {
                     continue;
                 }
 
-                if (input.get(i).equals(computer.get(j))) {
+                if (input.get(i).equals(computerNumber.get(j))) {
                     ++ballScore;
                 }
             }
         }
         return ballScore;
     }
-    private Score calculateScore(List<Integer> input, List<Integer> computer) {
-        int strikeScore = calculateStrikeScore(input, computer);
-        int ballScore = calculateBallScore(input, computer);
+    private Score calculateScore(List<Integer> input, List<Integer> computerNumber) {
+        int strikeScore = calculateStrikeScore(input, computerNumber);
+        int ballScore = calculateBallScore(input, computerNumber);
         return new Score(strikeScore, ballScore);
     }
 
