@@ -88,7 +88,7 @@ class ApplicationTest extends NsTest {
     public void validateIntegerRangeSuccessTest() throws Exception {
         // given
         List<Integer> input = List.of(1, 2, 3);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateIntegerRange", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
@@ -103,7 +103,7 @@ class ApplicationTest extends NsTest {
     public void validateIntegerRangeFailTestNegative() throws Exception {
         // given
         List<Integer> input = List.of(-1, 0, 1);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateIntegerRange", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
@@ -121,7 +121,7 @@ class ApplicationTest extends NsTest {
     public void validateIntegerRangeFailTestPositive() throws Exception {
         // given
         List<Integer> input = List.of(8, 9, 10);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateIntegerRange", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
@@ -139,7 +139,7 @@ class ApplicationTest extends NsTest {
     public void validateInputLengthSuccessTest() throws Exception {
         // given
         List<Integer> input = List.of(1, 2, 3);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateInputLength", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
@@ -154,7 +154,7 @@ class ApplicationTest extends NsTest {
     public void validateInputLengthFailTest() throws Exception {
         // given
         List<Integer> input = List.of(1, 2);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateInputLength", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
@@ -172,7 +172,7 @@ class ApplicationTest extends NsTest {
     public void validateInputDistinctSuccessTest() throws Exception {
         // given
         List<Integer> input = List.of(1, 2, 3);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateInputDistinct", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
@@ -187,7 +187,7 @@ class ApplicationTest extends NsTest {
     public void validateInputDistinctFailTest() throws Exception {
         // given
         List<Integer> input = List.of(2, 2, 3);
-        Method method = baseballGame.getClass().getDeclaredMethod("validateInputDistinct", List.class);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
         method.setAccessible(true);
 
         // when
