@@ -181,4 +181,22 @@ class ApplicationTest extends NsTest {
         assertThatCode(() -> method.invoke(baseballGame, input))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("validateInputDistinct 실패 테스트")
+    @Test
+    public void validateInputDistinctFailTest() throws Exception {
+        // given
+        List<Integer> input = List.of(2, 2, 3);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInputDistinct", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> method.invoke(baseballGame, input))
+                .isInstanceOf(InvocationTargetException.class)
+                .getCause()
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력한 숫자에 중복이 발생했습니다.");
+    }
 }
