@@ -166,4 +166,19 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력한 숫자의 길이가 3이 아닙니다.");
     }
+
+    @DisplayName("validateInputDistinct 성공 테스트")
+    @Test
+    public void validateInputDistinctSuccessTest() throws Exception {
+        // given
+        List<Integer> input = List.of(1, 2, 3);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInputDistinct", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatCode(() -> method.invoke(baseballGame, input))
+                .doesNotThrowAnyException();
+    }
 }
