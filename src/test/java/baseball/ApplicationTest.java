@@ -133,4 +133,19 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력이 [0, 9]사이의 숫자 이외의 문자를 포함합니다.");
     }
+
+    @DisplayName("validateInputLength 성공 테스트")
+    @Test
+    public void validateInputLengthSuccessTest() throws Exception {
+        // given
+        List<Integer> input = List.of(1, 2, 3);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInputLength", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatCode(() -> method.invoke(baseballGame, input))
+                .doesNotThrowAnyException();
+    }
 }
