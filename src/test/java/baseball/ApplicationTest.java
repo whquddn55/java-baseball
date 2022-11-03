@@ -1,5 +1,6 @@
 package baseball;
 
+import baseball.BaseballGame.Score;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -218,5 +219,37 @@ class ApplicationTest extends NsTest {
             assertThatCode(() -> validationMethod.invoke(baseballGame, computerNumbers))
                     .doesNotThrowAnyException();
         }
+    }
+
+    @DisplayName("calculateScore 테스트")
+    @Test
+    public void calculateScoreTest() throws Exception {
+        // given
+        List<Integer> input1 = List.of(1, 2, 3);
+        List<Integer> input2 = List.of(4, 2, 1);
+        List<Integer> input3 = List.of(2, 1, 3);
+        List<Integer> input4 = List.of(5, 7 ,1);
+        List<Integer> computerNumber = List.of(3, 2, 1);
+        Method method = baseballGame.getClass().getDeclaredMethod("calculateScore", List.class, List.class);
+        method.setAccessible(true);
+
+        // when
+        Score score1 = (Score) method.invoke(baseballGame, input1, computerNumber);
+        Score score2 = (Score) method.invoke(baseballGame, input2, computerNumber);
+        Score score3 = (Score) method.invoke(baseballGame, input3, computerNumber);
+        Score score4 = (Score) method.invoke(baseballGame, input4, computerNumber);
+
+        // then
+        assertThat(score1.strike).isEqualTo(1);
+        assertThat(score1.ball).isEqualTo(2);
+
+        assertThat(score2.strike).isEqualTo(2);
+        assertThat(score2.ball).isEqualTo(0);
+
+        assertThat(score3.strike).isEqualTo(0);
+        assertThat(score3.ball).isEqualTo(3);
+
+        assertThat(score4.strike).isEqualTo(1);
+        assertThat(score4.ball).isEqualTo(0);
     }
 }
