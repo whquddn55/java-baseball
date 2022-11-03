@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 public class BaseballGame {
     private static final int INPUT_SIZE = 3;
-    private Score score = new Score();
 
     public void run() throws IllegalArgumentException {
 
@@ -77,13 +76,13 @@ public class BaseballGame {
         }
         return ballScore;
     }
-    private void calculateScore(List<Integer> input, List<Integer> computer) {
+    private Score calculateScore(List<Integer> input, List<Integer> computer) {
         int strikeScore = calculateStrikeScore(input, computer);
         int ballScore = calculateBallScore(input, computer);
-        this.score.setScores(strikeScore, ballScore);
+        return new Score(strikeScore, ballScore);
     }
 
-    private boolean checkGameEnd() {
+    private boolean checkGameEnd(Score score) {
         boolean gameEnded = score.strike == INPUT_SIZE;
         if (gameEnded) {
             System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임 종료", INPUT_SIZE);
@@ -95,7 +94,7 @@ public class BaseballGame {
         public int strike;
         public int ball;
 
-        void setScores(int strikeScore, int ballScore) {
+        public Score(int strikeScore, int ballScore) {
             this.strike = strikeScore;
             this.ball = ballScore;
         }
