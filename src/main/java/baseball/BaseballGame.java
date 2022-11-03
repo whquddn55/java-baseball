@@ -1,4 +1,5 @@
 package baseball;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -12,7 +13,7 @@ public class BaseballGame {
 
     }
 
-    private String readIntegerFromUser()  {
+    private String readIntegerFromUser() {
         return Console.readLine();
     }
 
@@ -53,7 +54,7 @@ public class BaseballGame {
 
     private int calculateStrikeScore(List<Integer> input, List<Integer> computerNumber) {
         int strikeScore = 0;
-        for(int i = 0; i < INPUT_SIZE; ++i) {
+        for (int i = 0; i < INPUT_SIZE; ++i) {
             if (input.get(i).equals(computerNumber.get(i))) {
                 ++strikeScore;
             }
@@ -63,7 +64,7 @@ public class BaseballGame {
 
     private int calculateBallScore(List<Integer> input, List<Integer> computerNumber) {
         int ballScore = 0;
-        for(int i = 0; i < INPUT_SIZE; ++i) {
+        for (int i = 0; i < INPUT_SIZE; ++i) {
             for (int j = 0; j < INPUT_SIZE; ++j) {
                 if (i == j) {
                     continue;
@@ -76,6 +77,7 @@ public class BaseballGame {
         }
         return ballScore;
     }
+
     private Score calculateScore(List<Integer> input, List<Integer> computerNumber) {
         int strikeScore = calculateStrikeScore(input, computerNumber);
         int ballScore = calculateBallScore(input, computerNumber);
@@ -100,7 +102,7 @@ public class BaseballGame {
         }
         throw new IllegalArgumentException("1 또는 2을 입력해야합니다.");
     }
-    
+
     public static class Score {
         public int strike;
         public int ball;
