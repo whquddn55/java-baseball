@@ -1,5 +1,11 @@
 package baseball;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import baseball.BaseballGame.Score;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.InvocationTargetException;
@@ -7,10 +13,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final BaseballGame baseballGame = new BaseballGame();
