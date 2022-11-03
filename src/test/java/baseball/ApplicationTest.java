@@ -115,4 +115,22 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력이 [0, 9]사이의 숫자 이외의 문자를 포함합니다.");
     }
+
+    @DisplayName("validateIntegerRange 실패 테스트 - 양수")
+    @Test
+    public void validateIntegerRangeFailTestPositive() throws Exception {
+        // given
+        List<Integer> input = List.of(8, 9, 10);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateIntegerRange", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> method.invoke(baseballGame, input))
+                .isInstanceOf(InvocationTargetException.class)
+                .getCause()
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력이 [0, 9]사이의 숫자 이외의 문자를 포함합니다.");
+    }
 }
