@@ -10,10 +10,22 @@ public class BaseballGame {
     private static final int INPUT_SIZE = 3;
 
     public void run() throws IllegalArgumentException {
+        do {
+            Score score = new Score(0, 0);
+            List<Integer> computerNumber = generateComputerNumber();
+            while (!checkGameEnd(score)) {
+                String inputString = readIntegerFromUser();
+                List<Integer> inputNumber = castStringToIntegerList(inputString);
+                validateInput(inputNumber);
 
+                score = calculateScore(inputNumber, computerNumber);
+                score.print();
+            }
+        } while (checkWeatherReGame());
     }
 
     private String readIntegerFromUser() {
+        System.out.print("숫자를 입력해주세요 : ");
         return Console.readLine();
     }
 
@@ -101,6 +113,20 @@ public class BaseballGame {
             return false;
         }
         throw new IllegalArgumentException("1 또는 2을 입력해야합니다.");
+    }
+
+    private enum RE_GAME {
+        YES("1"), NO("2");
+
+        private String value;
+
+        RE_GAME(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
     public static class Score {
