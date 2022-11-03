@@ -199,4 +199,24 @@ class ApplicationTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력한 숫자에 중복이 발생했습니다.");
     }
+
+    @DisplayName("generateComputerNumber 테스트 - 100개 랜덤 생성")
+    @Test
+    public void generateComputerNumber100TimesSuccessTest() throws Exception {
+        // given
+        Method method = baseballGame.getClass().getDeclaredMethod("generateComputerNumber");
+        method.setAccessible(true);
+
+        Method validationMethod = baseballGame.getClass().getDeclaredMethod("validateInput", List.class);
+        validationMethod.setAccessible(true);
+
+        for (int i = 0; i < 100; ++i) {
+            // when
+            List<Integer> computerNumbers = (List<Integer>) method.invoke(baseballGame);
+
+            // then
+            assertThatCode(() -> validationMethod.invoke(baseballGame, computerNumbers))
+                    .doesNotThrowAnyException();
+        }
+    }
 }
