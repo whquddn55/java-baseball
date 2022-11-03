@@ -1,6 +1,7 @@
 package baseball;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final BaseballGame baseballGame = new BaseballGame();
@@ -96,5 +96,23 @@ class ApplicationTest extends NsTest {
         // then
         assertThatCode(() -> method.invoke(baseballGame, input))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("validateIntegerRange 실패 테스트 - 음수")
+    @Test
+    public void validateIntegerRangeFailTestNegative() throws Exception {
+        // given
+        List<Integer> input = List.of(-1, 0, 1);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateIntegerRange", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> method.invoke(baseballGame, input))
+                .isInstanceOf(InvocationTargetException.class)
+                .getCause()
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력이 [0, 9]사이의 숫자 이외의 문자를 포함합니다.");
     }
 }
