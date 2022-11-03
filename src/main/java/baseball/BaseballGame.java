@@ -90,6 +90,17 @@ public class BaseballGame {
         return gameEnded;
     }
 
+    private boolean checkWeatherReGame() throws IllegalArgumentException {
+        System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String weatherReGame = Console.readLine();
+        if (weatherReGame.equals(RE_GAME.YES.getValue())) {
+            return true;
+        } else if (weatherReGame.equals(RE_GAME.NO.getValue())) {
+            return false;
+        }
+        throw new IllegalArgumentException("1 또는 2을 입력해야합니다.");
+    }
+    
     public static class Score {
         public int strike;
         public int ball;
