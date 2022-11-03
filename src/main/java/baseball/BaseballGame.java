@@ -20,7 +20,7 @@ public class BaseballGame {
         return inputString.chars().map(charNumber -> charNumber - '0').boxed().collect(Collectors.toList());
     }
 
-    private void validateIntegerRange(List<Integer> input) {
+    private void validateIntegerRange(List<Integer> input) throws IllegalArgumentException {
         if (input.stream().anyMatch(number -> number < 0 || number > 9)) {
             throw new IllegalArgumentException("입력이 [0, 9]사이의 숫자 이외의 문자를 포함합니다.");
         }
