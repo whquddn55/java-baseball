@@ -252,4 +252,28 @@ class ApplicationTest extends NsTest {
         assertThat(score4.strike).isEqualTo(1);
         assertThat(score4.ball).isEqualTo(0);
     }
+
+    @DisplayName("checkGameEnd 테스트")
+    @Test
+    public void checkGameEndTest() throws Exception {
+        // given
+        Score twoStrikeOneBall = new Score(2, 1);
+        Score oneStrikeOneBall = new Score(1, 2);
+        Score threeBall = new Score(0, 3);
+        Score threeStrike = new Score(3, 0);
+        Method method = baseballGame.getClass().getDeclaredMethod("checkGameEnd", Score.class);
+        method.setAccessible(true);
+
+        // when
+        Boolean result1 = (Boolean) method.invoke(baseballGame, twoStrikeOneBall);
+        Boolean result2 = (Boolean) method.invoke(baseballGame, oneStrikeOneBall);
+        Boolean result3 = (Boolean) method.invoke(baseballGame, threeBall);
+        Boolean result4 = (Boolean) method.invoke(baseballGame, threeStrike);
+
+        // then
+        assertThat(result1).isEqualTo(false);
+        assertThat(result2).isEqualTo(false);
+        assertThat(result3).isEqualTo(false);
+        assertThat(result4).isEqualTo(true);
+    }
 }
