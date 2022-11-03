@@ -83,6 +83,14 @@ public class BaseballGame {
         this.score.setScores(strikeScore, ballScore);
     }
 
+    private boolean checkGameEnd() {
+        boolean gameEnded = score.strike == INPUT_SIZE;
+        if (gameEnded) {
+            System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임 종료", INPUT_SIZE);
+        }
+        return gameEnded;
+    }
+
     public static class Score {
         public int strike;
         public int ball;
