@@ -148,4 +148,22 @@ class ApplicationTest extends NsTest {
         assertThatCode(() -> method.invoke(baseballGame, input))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("validateInputLength 실패 테스트")
+    @Test
+    public void validateInputLengthFailTest() throws Exception {
+        // given
+        List<Integer> input = List.of(1, 2);
+        Method method = baseballGame.getClass().getDeclaredMethod("validateInputLength", List.class);
+        method.setAccessible(true);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> method.invoke(baseballGame, input))
+                .isInstanceOf(InvocationTargetException.class)
+                .getCause()
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력한 숫자의 길이가 3이 아닙니다.");
+    }
 }
