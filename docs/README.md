@@ -1,12 +1,38 @@
-1. 전체 로직을 동작시키는 public 메서드 작성.
-2. String을 입력 받는 메서드 작성.
-3. 입력 받은 수(String형)을 List<Integer>로 변환해주는 메서드 작성
-4. List<Integer>의 각 값이 [0, 9]인지 validate 메서드 작성. invalidated 인 경우 IllegalArgumentException 발생
-5. 수의 길이가 3인치 validate 하는 메서드 작성. invalidated 인 경우 IllegalArgumentException 발생
-6. 각 자릿수가 모두 다른지 validate 하는 메서드 작성. invalidated 인 경우 IllegalArgumentException 발생
-7. 두 validate 메서드를 실행하여 최종적으로 valid 한 입력의 수인지 확인하는 메서드 작성.
-8. 서로 다른 자릿수를 갖는 길이 3의 List<Integer>을 생성하는 메서드 작성
-9. 두 List<Integer> 비교하여 점수를 계산하여 반환하는 메서드 작성
-10. 점수를 확인하여 3스트라이크가 되어 게임이 종료되었는지, 계속 게임을 진행하는지 여부를 반환하는 메서드 작성
-11. 3스트라이크가 되어 게임이 종료되었을 경우에 재시작 여부를 입력 받는 메서드 작성. 1 또는 2 이외의 입력이 들어오면 IllegalArgumentException
-12. 지금까지 작성한 모든 메서드들을 조합하여 전체 로직을 동작하는 메서드를 완성.
+### BaseballGame
+#### 게임전체를 실행시키는 클래스로, 게임에 대한 규칙이나 룰을 적용하고 게임을 운영한다.
+- 게임을 동작시키는 public 메서드를 하나 갖는다. 해당 로직에서 게임의 전체적인 동작을 실행한다.
+- Score객체를 확인하여 게임 룰에 의해 게임이 종료되었는지, 계속 게임 진행을 하는지 여부를 반환한다.
+
+### Player
+#### 사용자로부터 입력을 받고 입력받은 값을 저장하거나 반환하는 클래스로, 실제 사용자의 역할을 한다.
+- 점수를 String 형태로 입력 받고 validate한 뒤 변환하여 저장한다.
+- String을 BallNumber객체로 변환한다.
+- 게임 재시작 여부를 입력 받고, 입력 결과를 반환한다.
+
+### Computer
+#### 랜덤한 숫자를 만들어내고 그 값을 갖고 있는 클래스로, 상대방 역할을 하는 컴퓨터의 역할을 한다.
+- 랜덤한 숫자를 만들어내고 BallNumber 객체 형태로 저장한다.
+
+### InputValidator
+#### 입력한 값을 validate하고 exception을 던지는 클래스다.
+- 세 validation에 모두 통과하는지 확인한다.
+  - 입력받은 값이 [0, 9]인지 validate한다.
+  - 수의 길이가 3인지 validate한다.
+  - 각 자릿수가 모두 다른지 validate한다.
+
+### OutputGenerator
+#### 사용자의 프롬프트에 출력할 텍스트를 만들어내고, 출력하는 클래스다.
+- 숫자를 입력 받기 위한 텍스트를 출력한다.
+- 게임 종료임을 알리는 텍스트를 출력한다.
+- 게임 재시작 여부를 입력 받기 위한 텍스트를 출력한다.
+- Score 객체를 형식에 맞게 출력한다.
+
+### BallNumber
+#### 입력으로 받거나 Computer 객체가 생성한 숫자를 나타내는 클래스다.
+
+### BallNumberComparator
+#### 입력으로 들어온 두 BallNumber를 비교하여 Score객체를 반환하는 클래스다.
+- 두 BallNumber를 비교하여 계산하고, Score객체를 반환한다.
+
+### Score
+#### 점수를 나타내는 클래스이다.
